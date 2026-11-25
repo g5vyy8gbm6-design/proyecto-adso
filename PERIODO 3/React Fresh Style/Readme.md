@@ -1,0 +1,94 @@
+# PROYECTO EN REACT FRESH STYLE
+Elaborado por react+ Bootstrap y mysql
+
+El sistema del inventario contara con inicio de sesion con base de datos en mysql con contraseña encriptada y JWT
+
+El dashboar contara con getion CRUD de **Usuarios, establecimiento, subcategorias, productos** usando datos simulados en JavaScript
+
+# Stack usado
+Frontend = react 19 + vite + Bootstrap 5 + react Router
+Backend (solo para login) = node.js + express + jwt
+Base de datos = MYSQL (XAMMP) + inventarios_react
+Encriptacion de contraseña = bcrypt (bcryptjs)
+Gestiones = Usuarios, categorias, subcategorias, productos/ datos simulados en JS (useStage + localStorege)
+Automatizacion npm scripts + concurrently
+
+Pre Requisitos
+# 1 
+instalar node.js vereficar desde cmd con node -v
+
+# 2 
+Tener Xampp instalado con mysql en puerto 3306
+
+# 3
+Tener un editor de codigo
+
+# Conocimietos previos
+
+**Componente**
+La pantalla se divide en piezas pequeñas y reutilizables
+(Un boton, una tabla, un formulario, un menu) cada componente es
+una funcion de javascript que devuelve lo que tiene que mostrar
+**JSX** una sintaxis que permite escribir algo parecido a html dentro de JavaScript por eso los archivos terminan con extension .jsx ejemplo:
+
+```jsx
+function Saludo () {
+    return <h1 className="text-primary">hola, React</h1>
+}
+
+
+```
+- **Estado (stage)** cada componente puede guardar datos que cambia por ejemplo, lo que el usuario escribe en un input cuando el estado cambia React vuelve a dibujarautomaticamente 
+solo lo necesario sin recargar la pagina
+
+**SPA** la aplicacion se carga una sola vez en el navegador y luego cambia de pagina sin recargar para esto usamos `react-router-dom`
+
+React solo se recarga de la interfaz grafica para el resto ultilizamos:
+**vite** para crear y corre el proyecto
+**Bootstrap** para los estilos
+**axios** para hablar entre frontend y backend
+**react-router-dom** para las rutas
+
+# pasos para crear el proyecto
+- 1 verefique que tengas node.js (node -v) cmd
+- 2 Desde la raiz de proyecto crea el proyecto con react y vite
+`npm create vite@latest frontend -- --template react`
+- 3 Entre a carpeta frontend con `cd frontend` y instale npm `npm install`
+- 4 instale la librerias: `npm install bootstrap bootstrap-icons react-router-dom axios`
+- 5 empaquetador optimiza y junta todo el css en un solo archivo al hacer npm run build 
+- 6 instalar las dependencias del backend y frontend al tiempo npm run install:all
+- 7 ingresar a la carpeta Backend npm init-y
+- 8 instalar dependencias
+- 8.1 npm install express mysql2 bcryptjs jsonwebtoken cors dotenv
+- 8.2 crea .env dentro de backend para las variables de entorno
+- 8.3 crea src/config/db.js conexion con DB
+- 8.4 crea src/middlewares/verificarToken.js valida el token JWT en rutas protegidas 
+- 8.5 crea src/controllers/auth.controller.js es la logica de inicio de sesion 
+- 8.6 crea src/routes/auth.routes.js conecta las rutas con el controlador
+- 8.7 crea src/server.js arma la app de express
+- 8.8 crea en Backend seed.js crea el usuario administrador 
+- 9 crear las sig carpetas en frontend
+- 9.1 src/api/axiosClient.js
+- 9.2 src/api/authService.js
+- 9.3 src/context/AuthContext.jsx
+- 9.4 src/page/LoginPage.jsx
+
+- 10 construir el esqueleto vial del panel administracion (sidebar + barra superior) y proteger las rutas
+del dashboard para que solo se puedan ver si hay sesion activa
+- 10.1 archivos a crear
+- frontend/src/routes/ProtectedRoutes.jsx
+- frontend/src/layouts/DashboardLayout.jsx
+- frontend/src/components/commo/Sidebar.jsx
+- frontend/src/components/commo/Topbar.jsx
+- frontend/src/pages/DasboardHpme.jsx
+- frontend/src/pages/NotFoundPage.jsx
+- editar frontend/src/App.jsx
+
+- 11 Crear la pantalla de gestion de usuarios con CRUD y A/D se usan datos simulados en javascript
+- 11.1 se crean estos archivos
+- frontend/src/data/mockUsuarios.js
+- frontend/src/hook/useCrudSimulado.js
+- frontend/src/components/common/EstadoBadge.jsx
+- frontend/src/components/common/ConfirmModal.jsx
+- frontend/src/components/usuarios/UsuarioFormModal.jsx
+- frontend/src/pages/UsuariosPage.jsx
