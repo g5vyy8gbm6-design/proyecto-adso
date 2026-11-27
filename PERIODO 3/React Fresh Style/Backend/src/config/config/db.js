@@ -17,3 +17,4 @@ const pool = mysql.createPool ({
 
 //Exportamos
 module.exports = pool;
+
